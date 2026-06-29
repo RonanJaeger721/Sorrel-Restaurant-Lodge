@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorrel Restaurant & Lounge | Jamaican Food in Harare</title>
+  <meta name="description" content="Sorrel Restaurant & Lounge serves authentic Jamaican food, rum cocktails, and poolside reggae nights in Harare.">
+  <meta property="og:title" content="Sorrel Restaurant & Lounge">
+  <meta property="og:description" content="Authentic Jamaican food in Harare: jerk chicken, curry goat, rum cocktails, and poolside lounge vibes.">
+  <meta property="og:image" content="https://z-cdn-media.chatglm.cn/files/ee6fc4de-559d-4fd1-98d7-21f97f132e70.png?auth_key=1882749853-6437c4d3b9a548658ec82acff59d75d8-0-4f7530c19772c7df4a9249f6c0f2bd51">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --ink: #100f0e;
+      --night: #17120f;
+      --charcoal: #231d18;
+      --cream: #fff7e8;
+      --muted: #cdbf9f;
+      --red: #b82126;
+      --red-dark: #76171b;
+      --gold: #d7a64c;
+      --green: #1f6b4c;
+      --sky: #276985;
+      --line: rgba(255, 247, 232, 0.14);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--night);
+      color: var(--cream);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    body.menu-open,
+    body.cart-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 14px;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      padding: 0 18px;
+    }
+
+    .nav-shell {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 8px;
+      border: 1px solid rgba(255, 247, 232, 0.16);
+      background: rgba(23, 18, 15, 0.78);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      background: var(--red);
+      color: white;
+      font-family: "DM Serif Display", serif;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      color: rgba(255, 247, 232, 0.72);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 247, 232, 0.08);
+      color: var(--cream);
+    }
+
+    .icon-btn,
+    .primary-btn,
+    .ghost-btn {
+      min-height: 42px;
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      font-weight: 800;
+    }
+
+    .primary-btn {
+      padding: 0 18px;
+      background: var(--red);
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background: #d12d32;
+    }
+
+    .ghost-btn {
+      padding: 0 18px;
+      background: rgba(255, 247, 232, 0.08);
+      color: var(--cream);
+      border: 1px solid rgba(255, 247, 232, 0.16);
+    }
+
+    .ghost-btn:hover {
+      background: rgba(255, 247, 232, 0.14);
+    }
+
+    .icon-btn {
+      width: 42px;
+      background: rgba(255, 247, 232, 0.08);
+      color: var(--cream);
+      border: 1px solid rgba(255, 247, 232, 0.16);
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      min-width: 20px;
+      height: 20px;
+      display: none;
+      place-items: center;
+      padding: 0 5px;
+      background: var(--gold);
+      color: #1b1209;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .cart-count.active {
+      display: grid;
+    }
+
+    .mobile-toggle {
+      display: none;
+    }
+
+    .hero {
+      min-height: 88svh;
+      display: grid;
+      align-items: end;
+      padding: 132px 22px 46px;
+      position: relative;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(16, 15, 14, 0.93), rgba(16, 15, 14, 0.58) 45%, rgba(16, 15, 14, 0.30)),
+        linear-gradient(180deg, rgba(16, 15, 14, 0.15), rgba(16, 15, 14, 0.80)),
+        url("https://z-cdn-media.chatglm.cn/files/49cbcf9b-bdc1-4b36-b131-459ca97ab5d4.png?auth_key=1882749853-7749145c3a6c42e7a915619007720a00-0-b25581ee56b1adde3cfe2cf664201238") center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(90deg, black, transparent 80%);
+    }
+
+    .wrap {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      font-weight: 900;
+      margin: 0 0 18px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "DM Serif Display", Georgia, serif;
+      font-weight: 400;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      font-size: clamp(64px, 11vw, 140px);
+      line-height: 0.84;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin: 24px 0 0;
+      color: rgba(255, 247, 232, 0.78);
+      font-size: clamp(18px, 2vw, 23px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .hero-panel {
+      border: 1px solid rgba(255, 247, 232, 0.18);
+      background: rgba(16, 15, 14, 0.70);
+      backdrop-filter: blur(16px);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel strong {
+      display: block;
+      color: white;
+      font-size: 34px;
+      line-height: 1;
+      margin-bottom: 8px;
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+    }
+
+    .hero-panel p {
+      margin: 0;
+      color: rgba(255, 247, 232, 0.68);
+      font-size: 14px;
+    }
+
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 247, 232, 0.12);
+      border-bottom: 1px solid rgba(255, 247, 232, 0.12);
+      background: var(--red);
+    }
+
+    .ticker-track {
+      width: max-content;
+      display: flex;
+      gap: 36px;
+      padding: 12px 18px;
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: ticker 28s linear infinite;
+    }
+
+    @keyframes ticker {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    section {
+      padding: 96px 22px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(38px, 5vw, 70px);
+      line-height: 0.96;
+    }
+
+    .section-head p {
+      max-width: 430px;
+      margin: 0;
+      color: rgba(255, 247, 232, 0.65);
+    }
+
+    .story {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .story .eyebrow,
+    .story h2 span {
+      color: var(--red);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .photo-stack {
+      display: grid;
+      grid-template-columns: 1fr 0.76fr;
+      grid-template-rows: 220px 220px;
+      gap: 12px;
+    }
+
+    .photo {
+      min-height: 180px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(16, 15, 14, 0.12);
+    }
+
+    .photo.tall {
+      grid-row: 1 / span 2;
+    }
+
+    .story-text {
+      color: rgba(16, 15, 14, 0.76);
+      font-size: 18px;
+    }
+
+    .story-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .point {
+      border: 1px solid rgba(16, 15, 14, 0.12);
+      padding: 18px;
+      background: white;
+    }
+
+    .point span {
+      display: block;
+      color: var(--red);
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .menu {
+      background: #17120f;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tab {
+      min-height: 38px;
+      border: 1px solid rgba(255, 247, 232, 0.14);
+      background: rgba(255, 247, 232, 0.06);
+      color: rgba(255, 247, 232, 0.72);
+      padding: 0 13px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .tab.active,
+    .tab:hover {
+      border-color: transparent;
+      background: var(--gold);
+      color: #21170f;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .menu-item {
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border: 1px solid rgba(255, 247, 232, 0.13);
+      background: #211b16;
+      border-radius: 8px;
+    }
+
+    .menu-item:hover {
+      border-color: rgba(215, 166, 76, 0.52);
+      transform: translateY(-2px);
+    }
+
+    .menu-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .menu-item h3 {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .menu-item p {
+      margin: 0;
+      color: rgba(255, 247, 232, 0.58);
+      font-size: 14px;
+    }
+
+    .price {
+      color: var(--gold);
+      white-space: nowrap;
+      font-family: "DM Serif Display", serif;
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 12px;
+      padding: 4px 8px;
+      color: #1d140b;
+      background: var(--gold);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .add-btn,
+    .qty-btn {
+      border: 0;
+      background: rgba(255, 247, 232, 0.10);
+      color: white;
+      font-weight: 900;
+    }
+
+    .add-btn {
+      width: 100%;
+      min-height: 40px;
+    }
+
+    .add-btn:hover,
+    .qty-btn:hover {
+      background: var(--red);
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .qty-btn {
+      width: 34px;
+      height: 34px;
+    }
+
+    .qty {
+      min-width: 26px;
+      text-align: center;
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .vibes {
+      background: #0f1412;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      grid-auto-rows: 230px;
+      gap: 12px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 247, 232, 0.12);
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item::after {
+      content: attr(data-title);
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 8px 10px;
+      background: rgba(16, 15, 14, 0.76);
+      color: white;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .booking {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .booking .eyebrow {
+      color: var(--green);
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    form,
+    .contact-card,
+    .order-summary {
+      border: 1px solid rgba(16, 15, 14, 0.12);
+      background: white;
+      border-radius: 8px;
+    }
+
+    form {
+      padding: 22px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(16, 15, 14, 0.62);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid rgba(16, 15, 14, 0.16);
+      color: var(--ink);
+      background: #fffaf0;
+      padding: 11px 12px;
+      border-radius: 6px;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid rgba(31, 107, 76, 0.22);
+      border-color: var(--green);
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 14px;
+      min-height: 50px;
+      border: 0;
+      background: var(--green);
+      color: white;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .form-submit:hover {
+      background: #28805c;
+    }
+
+    .contact-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-card {
+      padding: 20px;
+    }
+
+    .contact-card h3 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(16, 15, 14, 0.10);
+      color: rgba(16, 15, 14, 0.74);
+      font-weight: 800;
+    }
+
+    .contact-link:hover {
+      color: var(--red);
+    }
+
+    .order-summary {
+      display: none;
+      margin-top: 14px;
+      padding: 16px;
+      background: #fff5dc;
+    }
+
+    .order-summary.active {
+      display: block;
+    }
+
+    .summary-line,
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: rgba(16, 15, 14, 0.72);
+      font-size: 14px;
+      padding: 5px 0;
+    }
+
+    .summary-total {
+      margin-top: 8px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(16, 15, 14, 0.12);
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .site-footer {
+      padding: 28px 22px;
+      background: var(--ink);
+      border-top: 1px solid rgba(255, 247, 232, 0.12);
+      color: rgba(255, 247, 232, 0.55);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: none;
+    }
+
+    .drawer.active {
+      display: block;
+    }
+
+    .drawer-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.62);
+    }
+
+    .cart-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(440px, 100%);
+      height: 100%;
+      padding: 20px;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-y: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .cart-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .cart-head h2 {
+      font-size: 34px;
+    }
+
+    .cart-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(16, 15, 14, 0.12);
+    }
+
+    .cart-row strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .cart-row span {
+      color: rgba(16, 15, 14, 0.64);
+      font-size: 13px;
+    }
+
+    .cart-empty {
+      padding: 56px 0;
+      color: rgba(16, 15, 14, 0.58);
+      text-align: center;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0 12px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 65;
+      display: none;
+      place-items: center;
+      background: rgba(16, 15, 14, 0.94);
+      backdrop-filter: blur(20px);
+    }
+
+    .mobile-menu.active {
+      display: grid;
+    }
+
+    .mobile-menu nav {
+      display: grid;
+      gap: 10px;
+      width: min(340px, calc(100% - 44px));
+    }
+
+    .mobile-menu a {
+      padding: 18px;
+      border: 1px solid rgba(255, 247, 232, 0.14);
+      font-family: "DM Serif Display", serif;
+      font-size: 32px;
+      text-align: center;
+      background: rgba(255, 247, 232, 0.06);
+    }
+
+    .wa-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 35;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #25d366;
+      color: white;
+      box-shadow: 0 14px 42px rgba(37, 211, 102, 0.32);
+    }
+
+    .wa-float:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      .nav-links,
+      .nav-reserve {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: inline-flex;
+        margin-left: auto;
+      }
+
+      .hero-grid,
+      .story-grid,
+      .booking-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        max-width: 420px;
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .site-header {
+        top: 8px;
+        padding: 0 8px;
+      }
+
+      .brand span:last-child {
+        display: none;
+      }
+
+      .hero {
+        min-height: 86svh;
+        padding: 112px 16px 34px;
+      }
+
+      h1 {
+        font-size: clamp(58px, 20vw, 92px);
+      }
+
+      section {
+        padding: 70px 16px;
+      }
+
+      .photo-stack,
+      .menu-grid,
+      .gallery,
+      .form-grid,
+      .story-points {
+        grid-template-columns: 1fr;
+      }
+
+      .photo.tall,
+      .gallery-item:first-child {
+        grid-row: auto;
+      }
+
+      .gallery {
+        grid-auto-rows: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="Sorrel home">
+        <span class="brand-mark">S</span>
+        <span>Sorrel</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#story">Story</a>
+        <a href="#menu">Menu</a>
+        <a href="#vibes">Vibes</a>
+        <a href="#book">Book</a>
+        <a href="#find">Find Us</a>
+      </nav>
+      <button class="icon-btn" type="button" onclick="openCart()" aria-label="Open order">
+        <i data-lucide="shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a class="primary-btn nav-reserve" href="#book"><i data-lucide="calendar-check"></i> Reserve</a>
+      <button class="icon-btn mobile-toggle" type="button" onclick="toggleMenu()" aria-label="Open menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Harare's Caribbean Kitchen</p>
+          <h1>Sorrel Restaurant & Lounge</h1>
+          <p class="hero-copy">Authentic Jamaican plates, rum cocktails, and poolside reggae nights under the Harare sky.</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#menu"><i data-lucide="utensils"></i> View Menu</a>
+            <a class="ghost-btn" href="https://wa.me/263789421489?text=Hi%20Sorrel!%20I%20would%20like%20to%20book%20a%20table." target="_blank" rel="noopener"><i data-lucide="message-circle"></i> WhatsApp</a>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <strong>Jerk. Rum. Reggae.</strong>
+          <p>From slow-smoked jerk chicken and curry goat to Sorrel Bloom cocktails, every visit brings a little Kingston warmth to Harare.</p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Jerk Chicken</span><span>Curry Goat</span><span>Rum Punch</span><span>Oxtail Stew</span><span>Poolside Lounge</span><span>Bob Marley Cocktail</span><span>Ackee & Salt Fish</span>
+        <span>Jerk Chicken</span><span>Curry Goat</span><span>Rum Punch</span><span>Oxtail Stew</span><span>Poolside Lounge</span><span>Bob Marley Cocktail</span><span>Ackee & Salt Fish</span>
+      </div>
+    </div>
+
+    <section class="story" id="story">
+      <div class="wrap story-grid">
+        <div class="photo-stack">
+          <div class="photo tall" style="background-image:url('https://z-cdn-media.chatglm.cn/files/a3c78935-392d-410d-8140-3bec79e8c412.png?auth_key=1882749853-a6c6dcb693ac4067b7ddc6e2791b0408-0-4e673f210bff159ad28185fac9c287ec')"></div>
+          <div class="photo" style="background-image:url('https://z-cdn-media.chatglm.cn/files/b7a7172c-8c9e-4d29-a1ef-d72defb5211e.png?auth_key=1882749853-5dac97530c824d5a897cf9b4b5042bc6-0-8742d8c8692c1bcee37856980e0e9d77')"></div>
+          <div class="photo" style="background-image:url('https://z-cdn-media.chatglm.cn/files/9e5dda36-bd44-4af3-a269-43732e43cd61.png?auth_key=1882749853-0faa63c4b001486ab66d53a08f286f2c-0-8e93ab65835fd33b15b6a0a6f539058e')"></div>
+        </div>
+        <div>
+          <p class="eyebrow">The Island Table</p>
+          <h2>Where Harare meets <span>Kingston</span></h2>
+          <p class="story-text">Named after the hibiscus flower behind Jamaica's deep-red holiday drink, Sorrel brings Caribbean comfort to Zimbabwe with slow cooking, bright spice, and a relaxed lounge energy.</p>
+          <div class="story-points">
+            <div class="point"><span>Smoke</span>Jerk chicken with pimento-style spice and a proper char.</div>
+            <div class="point"><span>Spice</span>Curry goat, brown stew chicken, oxtail, ackee, and seafood.</div>
+            <div class="point"><span>Sunset</span>Rum cocktails, fresh juices, and poolside nights.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu" id="menu">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Menu</p>
+            <h2>Caribbean comfort, made for sharing.</h2>
+          </div>
+          <p>Add dishes to your order, then send your booking through WhatsApp with everything pre-filled.</p>
+        </div>
+        <div class="tabs" id="tabs"></div>
+        <div class="menu-grid" id="menuGrid"></div>
+      </div>
+    </section>
+
+    <section class="vibes" id="vibes">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Vibes</p>
+            <h2>Good food. Low lights. Easy rhythm.</h2>
+          </div>
+          <p>Come for dinner, linger for drinks, and let the lounge carry the night a little longer.</p>
+        </div>
+        <div class="gallery">
+          <div class="gallery-item" data-title="The Sign" style="background-image:url('https://z-cdn-media.chatglm.cn/files/a3c78935-392d-410d-8140-3bec79e8c412.png?auth_key=1882749853-a6c6dcb693ac4067b7ddc6e2791b0408-0-4e673f210bff159ad28185fac9c287ec')"></div>
+          <div class="gallery-item" data-title="Night Glow" style="background-image:url('https://z-cdn-media.chatglm.cn/files/ee6fc4de-559d-4fd1-98d7-21f97f132e70.png?auth_key=1882749853-6437c4d3b9a548658ec82acff59d75d8-0-4f7530c19772c7df4a9249f6c0f2bd51')"></div>
+          <div class="gallery-item" data-title="Reggae Wall" style="background-image:url('https://z-cdn-media.chatglm.cn/files/b7a7172c-8c9e-4d29-a1ef-d72defb5211e.png?auth_key=1882749853-5dac97530c824d5a897cf9b4b5042bc6-0-8742d8c8692c1bcee37856980e0e9d77')"></div>
+          <div class="gallery-item" data-title="Poolside Lounge" style="background-image:url('https://z-cdn-media.chatglm.cn/files/9e5dda36-bd44-4af3-a269-43732e43cd61.png?auth_key=1882749853-0faa63c4b001486ab66d53a08f286f2c-0-8e93ab65835fd33b15b6a0a6f539058e')"></div>
+          <div class="gallery-item" data-title="Sorrel Nights" style="background-image:url('https://z-cdn-media.chatglm.cn/files/49cbcf9b-bdc1-4b36-b131-459ca97ab5d4.png?auth_key=1882749853-7749145c3a6c42e7a915619007720a00-0-b25581ee56b1adde3cfe2cf664201238')"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="book">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Reserve</p>
+            <h2>Claim your table.</h2>
+          </div>
+          <p>Send your reservation directly to Sorrel on WhatsApp. You can include selected menu items as a pre-order.</p>
+        </div>
+        <div class="booking-layout">
+          <form id="bookingForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" required autocomplete="name" placeholder="Your name">
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" required autocomplete="tel" placeholder="078 000 0000">
+              </div>
+              <div class="field">
+                <label for="date">Date</label>
+                <input id="date" name="date" required type="date">
+              </div>
+              <div class="field">
+                <label for="time">Time</label>
+                <input id="time" name="time" required type="time">
+              </div>
+              <div class="field">
+                <label for="guests">Guests</label>
+                <select id="guests" name="guests" required>
+                  <option value="2">2 guests</option>
+                  <option value="3">3 guests</option>
+                  <option value="4">4 guests</option>
+                  <option value="5">5 guests</option>
+                  <option value="6">6 guests</option>
+                  <option value="8">8 guests</option>
+                  <option value="10+">10+ guests</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="seating">Seating</label>
+                <select id="seating" name="seating">
+                  <option>Any seating</option>
+                  <option>Poolside</option>
+                  <option>Lounge</option>
+                  <option>Dining room</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" placeholder="Birthday, allergies, special requests"></textarea>
+              </div>
+            </div>
+            <div class="order-summary" id="orderSummary">
+              <strong>Selected order</strong>
+              <div id="summaryItems"></div>
+              <div class="summary-total"><span>Total</span><span id="summaryTotal">$0</span></div>
+            </div>
+            <button class="form-submit" type="submit"><i data-lucide="send"></i> Send Booking via WhatsApp</button>
+          </form>
+
+          <div class="contact-stack" id="find">
+            <div class="contact-card">
+              <h3>Come through</h3>
+              <a class="contact-link" href="https://maps.google.com/?q=Harare,Zimbabwe" target="_blank" rel="noopener">
+                <span>Harare, Zimbabwe</span><i data-lucide="map-pin"></i>
+              </a>
+              <a class="contact-link" href="https://wa.me/263789421489" target="_blank" rel="noopener">
+                <span>WhatsApp: 078 942 1489</span><i data-lucide="message-circle"></i>
+              </a>
+              <a class="contact-link" href="tel:0789421489">
+                <span>Call: 078 942 1489</span><i data-lucide="phone"></i>
+              </a>
+            </div>
+            <div class="contact-card">
+              <h3>Quick message</h3>
+              <form id="messageForm" style="padding:0;border:0;background:transparent">
+                <label for="quickName">Name</label>
+                <input id="quickName" required placeholder="Your name">
+                <label for="quickContact" style="margin-top:12px">Contact</label>
+                <input id="quickContact" required placeholder="Phone or email">
+                <label for="quickMessage" style="margin-top:12px">Message</label>
+                <textarea id="quickMessage" required placeholder="What would you like to ask?"></textarea>
+                <button class="form-submit" type="submit"><i data-lucide="message-circle"></i> Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <strong>Sorrel Restaurant & Lounge</strong>
+      <span>&copy; 2026 Sorrel, Harare</span>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/263789421489?text=Hi%20Sorrel!%20I%20would%20like%20to%20enquire%20about%20your%20restaurant." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i data-lucide="message-circle"></i>
+  </a>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav>
+      <a href="#story" onclick="toggleMenu()">Story</a>
+      <a href="#menu" onclick="toggleMenu()">Menu</a>
+      <a href="#vibes" onclick="toggleMenu()">Vibes</a>
+      <a href="#book" onclick="toggleMenu()">Book</a>
+      <a href="#find" onclick="toggleMenu()">Find Us</a>
+    </nav>
+  </div>
+
+  <div class="drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-backdrop" onclick="closeCart()"></div>
+    <aside class="cart-panel" aria-label="Your order">
+      <div class="cart-head">
+        <h2>Your order</h2>
+        <button class="icon-btn" type="button" onclick="closeCart()" aria-label="Close order" style="color:#100f0e;background:#fff;border-color:rgba(16,15,14,.14)">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div id="cartBody"></div>
+      <div id="cartFooter" style="display:none">
+        <div class="cart-total"><span>Total</span><span id="cartTotal">$0</span></div>
+        <a class="primary-btn" href="#book" onclick="closeCart()" style="width:100%;background:var(--green)"><i data-lucide="calendar-check"></i> Continue to Booking</a>
+        <button class="ghost-btn" type="button" onclick="clearCart()" style="width:100%;margin-top:8px;color:#100f0e;background:#fff;border-color:rgba(16,15,14,.14)">Clear Order</button>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const WA_NUMBER = "263789421489";
+
+    const items = [
+      { id: 1, name: "Ackee & Salt Fish Bruschetta", price: 10, cat: "Starters", desc: "Toasted ciabatta with Jamaican ackee and salt fish." },
+      { id: 2, name: "BBQ Wings", price: 7, cat: "Starters", desc: "Smoky BBQ wings with house dipping sauce." },
+      { id: 3, name: "Jerk Spring Rolls", price: 8, cat: "Starters", desc: "Crispy rolls with jerk-seasoned chicken and vegetables." },
+      { id: 4, name: "Plantain Chips & Dip", price: 5, cat: "Starters", desc: "Golden fried plantain with guava sauce." },
+      { id: 5, name: "Caribbean Jerk Salad", price: 7, cat: "Salads", desc: "Jerk chicken strips, mango, and lime dressing." },
+      { id: 6, name: "Tropical Fruit Salad", price: 6, cat: "Salads", desc: "Pineapple, papaya, mango, and passion fruit." },
+      { id: 7, name: "Jerk Chicken", price: 15, cat: "Mains", desc: "Signature slow-smoked chicken with rice and peas.", badge: "Popular" },
+      { id: 8, name: "BBQ Chicken", price: 14, cat: "Mains", desc: "Tender half chicken with smoky BBQ glaze." },
+      { id: 9, name: "Curry Chicken", price: 14, cat: "Mains", desc: "Rich Jamaican curry with potatoes and steamed rice." },
+      { id: 10, name: "Caribbean Platter", price: 22, cat: "Mains", desc: "Jerk chicken, curry goat, rice and peas, and festival.", badge: "Sharing" },
+      { id: 11, name: "Curry Goat", price: 16, cat: "Jamaican", desc: "Slow-cooked goat in authentic Jamaican curry spices.", badge: "Must Try" },
+      { id: 12, name: "Oxtail Stew", price: 18, cat: "Jamaican", desc: "Fall-off-the-bone oxtail with brown stew and butter beans." },
+      { id: 13, name: "Ackee & Salt Fish", price: 14, cat: "Jamaican", desc: "Jamaica's national dish with sauteed ackee." },
+      { id: 14, name: "Brown Stew Chicken", price: 13, cat: "Jamaican", desc: "Chicken braised in savoury brown gravy with herbs." },
+      { id: 15, name: "Rump Steak 300g", price: 18, cat: "Steaks", desc: "Grilled to your liking with chips and salad." },
+      { id: 16, name: "Sirloin Steak 300g", price: 22, cat: "Steaks", desc: "Premium cut, chargrilled with garlic butter." },
+      { id: 17, name: "T-Bone Steak 400g", price: 25, cat: "Steaks", desc: "T-bone with pepper sauce and onion rings." },
+      { id: 18, name: "Grilled Lobster", price: 28, cat: "Seafood", desc: "Whole lobster with garlic butter and lemon.", badge: "Premium" },
+      { id: 19, name: "Jerk Shrimp", price: 16, cat: "Seafood", desc: "Jerk-marinated prawns with tropical salsa." },
+      { id: 20, name: "Fish & Chips", price: 12, cat: "Seafood", desc: "Beer-battered fish, crispy chips, and tartare." },
+      { id: 21, name: "Bob Marley", price: 8, cat: "Cocktails", desc: "Rum, strawberry, banana, and pineapple layered.", badge: "Signature" },
+      { id: 22, name: "Jager Bomb", price: 6, cat: "Cocktails", desc: "Jagermeister dropped into energy drink." },
+      { id: 23, name: "Sorrel Bloom", price: 8, cat: "Cocktails", desc: "Sorrel-infused rum with lime and ginger.", badge: "House" },
+      { id: 24, name: "Mango Mule", price: 7, cat: "Cocktails", desc: "Vodka, fresh mango, ginger beer, and lime." },
+      { id: 25, name: "Pina Colada", price: 7, cat: "Cocktails", desc: "Rum, coconut cream, and pineapple juice." },
+      { id: 26, name: "Local Beer", price: 5, cat: "Drinks", desc: "Ice-cold local lager." },
+      { id: 27, name: "Imported Beer", price: 8, cat: "Drinks", desc: "Premium imported beers." },
+      { id: 28, name: "Cider / Cooler", price: 5, cat: "Drinks", desc: "Refreshing fruit ciders and coolers." },
+      { id: 29, name: "Sorrel Drink", price: 4, cat: "Drinks", desc: "Traditional hibiscus drink, sweet and spiced.", badge: "Must Try" },
+      { id: 30, name: "Fresh Juice", price: 4, cat: "Drinks", desc: "Orange, mango, pineapple, or mixed." },
+      { id: 31, name: "Milkshake", price: 5, cat: "Drinks", desc: "Chocolate, vanilla, or strawberry." },
+      { id: 32, name: "Soft Drink", price: 2, cat: "Drinks", desc: "Fanta, Coca-Cola, Sprite, and more." },
+      { id: 33, name: "Coffee / Tea", price: 3, cat: "Drinks", desc: "Hot beverages to end your meal." }
+    ];
+
+    let activeCat = "All";
+    let cart = [];
+
+    const money = value => "$" + value;
+    const categories = ["All", ...new Set(items.map(item => item.cat))];
+
+    function renderTabs() {
+      document.getElementById("tabs").innerHTML = categories.map(cat => (
+        `<button class="tab ${cat === activeCat ? "active" : ""}" type="button" onclick="setCat('${cat}')">${cat}</button>`
+      )).join("");
+    }
+
+    function renderMenu() {
+      const list = activeCat === "All" ? items : items.filter(item => item.cat === activeCat);
+      document.getElementById("menuGrid").innerHTML = list.map(item => {
+        const selected = cart.find(row => row.id === item.id);
+        return `
+          <article class="menu-item">
+            <div>
+              <div class="menu-top">
+                <div>
+                  <h3>${item.name}</h3>
+                  <p>${item.desc}</p>
+                </div>
+                <div class="price">${money(item.price)}</div>
+              </div>
+              ${item.badge ? `<span class="badge">${item.badge}</span>` : ""}
+            </div>
+            <div class="qty-row">
+              ${selected ? `
+                <div class="qty-controls">
+                  <button class="qty-btn" type="button" onclick="changeQty(${item.id}, -1)">-</button>
+                  <span class="qty">${selected.qty}</span>
+                  <button class="qty-btn" type="button" onclick="changeQty(${item.id}, 1)">+</button>
+                </div>
+              ` : `<button class="add-btn" type="button" onclick="addToCart(${item.id})">Add to order</button>`}
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function setCat(cat) {
+      activeCat = cat;
+      renderTabs();
+      renderMenu();
+    }
+
+    function addToCart(id) {
+      const item = items.find(row => row.id === id);
+      const existing = cart.find(row => row.id === id);
+      if (existing) existing.qty += 1;
+      else cart.push({ ...item, qty: 1 });
+      syncCart();
+      renderMenu();
+    }
+
+    function changeQty(id, amount) {
+      const row = cart.find(item => item.id === id);
+      if (!row) return;
+      row.qty += amount;
+      if (row.qty <= 0) cart = cart.filter(item => item.id !== id);
+      syncCart();
+      renderMenu();
+    }
+
+    function clearCart() {
+      cart = [];
+      syncCart();
+      renderMenu();
+      closeCart();
+    }
+
+    function cartTotals() {
+      return {
+        count: cart.reduce((sum, item) => sum + item.qty, 0),
+        total: cart.reduce((sum, item) => sum + item.qty * item.price, 0)
+      };
+    }
+
+    function syncCart() {
+      const totals = cartTotals();
+      const count = document.getElementById("cartCount");
+      count.textContent = totals.count;
+      count.classList.toggle("active", totals.count > 0);
+
+      const body = document.getElementById("cartBody");
+      const footer = document.getElementById("cartFooter");
+      if (!cart.length) {
+        body.innerHTML = `<div class="cart-empty">Your order is empty. Add dishes from the menu.</div>`;
+        footer.style.display = "none";
+      } else {
+        body.innerHTML = cart.map(item => `
+          <div class="cart-row">
+            <div>
+              <strong>${item.name}</strong>
+              <span>${money(item.price)} each x ${item.qty}</span>
+            </div>
+            <strong>${money(item.price * item.qty)}</strong>
+          </div>
+        `).join("");
+        footer.style.display = "block";
+        document.getElementById("cartTotal").textContent = money(totals.total);
+      }
+
+      const summary = document.getElementById("orderSummary");
+      if (!cart.length) {
+        summary.classList.remove("active");
+      } else {
+        summary.classList.add("active");
+        document.getElementById("summaryItems").innerHTML = cart.map(item => `
+          <div class="summary-line"><span>${item.name} x ${item.qty}</span><span>${money(item.price * item.qty)}</span></div>
+        `).join("");
+        document.getElementById("summaryTotal").textContent = money(totals.total);
+      }
+    }
+
+    function openCart() {
+      document.getElementById("cartDrawer").classList.add("active");
+      document.getElementById("cartDrawer").setAttribute("aria-hidden", "false");
+      document.body.classList.add("cart-open");
+    }
+
+    function closeCart() {
+      document.getElementById("cartDrawer").classList.remove("active");
+      document.getElementById("cartDrawer").setAttribute("aria-hidden", "true");
+      document.body.classList.remove("cart-open");
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("active");
+      document.body.classList.toggle("menu-open", menu.classList.contains("active"));
+    }
+
+    function openWhatsApp(message) {
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+    }
+
+    document.getElementById("bookingForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const totals = cartTotals();
+      const orderText = cart.length
+        ? "\n\nPre-order:\n" + cart.map(item => `- ${item.name} x ${item.qty}: ${money(item.price * item.qty)}`).join("\n") + `\nTotal: ${money(totals.total)}`
+        : "";
+      const notes = data.get("notes") ? `\nNotes: ${data.get("notes")}` : "";
+      openWhatsApp(`New Sorrel table reservation\n\nName: ${data.get("name")}\nPhone: ${data.get("phone")}\nDate: ${data.get("date")}\nTime: ${data.get("time")}\nGuests: ${data.get("guests")}\nSeating: ${data.get("seating")}${orderText}${notes}`);
+    });
+
+    document.getElementById("messageForm").addEventListener("submit", event => {
+      event.preventDefault();
+      openWhatsApp(`Message from Sorrel website\n\nName: ${document.getElementById("quickName").value}\nContact: ${document.getElementById("quickContact").value}\n\n${document.getElementById("quickMessage").value}`);
+    });
+
+    document.getElementById("date").min = new Date().toISOString().split("T")[0];
+    renderTabs();
+    renderMenu();
+    syncCart();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
