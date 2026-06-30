@@ -10,22 +10,24 @@
   <meta property="og:image" content="https://z-cdn-media.chatglm.cn/files/ee6fc4de-559d-4fd1-98d7-21f97f132e70.png?auth_key=1882749853-6437c4d3b9a548658ec82acff59d75d8-0-4f7530c19772c7df4a9249f6c0f2bd51">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --ink: #100f0e;
-      --night: #17120f;
-      --charcoal: #231d18;
-      --cream: #fff7e8;
-      --muted: #cdbf9f;
-      --red: #b82126;
-      --red-dark: #76171b;
-      --gold: #d7a64c;
-      --green: #1f6b4c;
-      --sky: #276985;
-      --line: rgba(255, 247, 232, 0.14);
-      --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+      --ink: #16100d;
+      --night: #1d1612;
+      --charcoal: #2b211b;
+      --cream: #fff8ea;
+      --muted: #d2c4a7;
+      --red: #963136;
+      --red-dark: #642428;
+      --gold: #c99a49;
+      --green: #276849;
+      --sky: #376f7d;
+      --line: rgba(255, 248, 234, 0.13);
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+      --soft: 22px;
+      --button: 999px;
     }
 
     * {
@@ -41,7 +43,7 @@
       background: var(--night);
       color: var(--cream);
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     body.menu-open,
@@ -87,8 +89,9 @@
       align-items: center;
       gap: 16px;
       padding: 8px;
-      border: 1px solid rgba(255, 247, 232, 0.16);
-      background: rgba(23, 18, 15, 0.78);
+      border: 1px solid rgba(255, 248, 234, 0.14);
+      border-radius: var(--button);
+      background: rgba(29, 22, 18, 0.72);
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
     }
@@ -98,7 +101,7 @@
       align-items: center;
       gap: 10px;
       padding: 8px 12px;
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: 0;
     }
 
@@ -112,6 +115,7 @@
       font-family: "DM Serif Display", serif;
       font-size: 20px;
       line-height: 1;
+      border-radius: 50%;
     }
 
     .nav-links {
@@ -125,7 +129,8 @@
       padding: 10px 12px;
       color: rgba(255, 247, 232, 0.72);
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 500;
+      border-radius: var(--button);
     }
 
     .nav-links a:hover {
@@ -142,17 +147,18 @@
       align-items: center;
       justify-content: center;
       gap: 9px;
-      font-weight: 800;
+      font-weight: 600;
+      border-radius: var(--button);
     }
 
     .primary-btn {
       padding: 0 18px;
-      background: var(--red);
+      background: linear-gradient(135deg, #a23a3f, #723036);
       color: white;
     }
 
     .primary-btn:hover {
-      background: #d12d32;
+      background: linear-gradient(135deg, #ae474b, #7c363b);
     }
 
     .ghost-btn {
@@ -160,6 +166,7 @@
       background: rgba(255, 247, 232, 0.08);
       color: var(--cream);
       border: 1px solid rgba(255, 247, 232, 0.16);
+      border-radius: var(--button);
     }
 
     .ghost-btn:hover {
@@ -172,6 +179,7 @@
       color: var(--cream);
       border: 1px solid rgba(255, 247, 232, 0.16);
       position: relative;
+      border-radius: 50%;
     }
 
     .cart-count {
@@ -186,7 +194,8 @@
       background: var(--gold);
       color: #1b1209;
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 700;
+      border-radius: 999px;
     }
 
     .cart-count.active {
@@ -205,8 +214,8 @@
       position: relative;
       isolation: isolate;
       background:
-        linear-gradient(90deg, rgba(16, 15, 14, 0.93), rgba(16, 15, 14, 0.58) 45%, rgba(16, 15, 14, 0.30)),
-        linear-gradient(180deg, rgba(16, 15, 14, 0.15), rgba(16, 15, 14, 0.80)),
+        linear-gradient(90deg, rgba(22, 16, 13, 0.88), rgba(22, 16, 13, 0.50) 48%, rgba(22, 16, 13, 0.22)),
+        linear-gradient(180deg, rgba(22, 16, 13, 0.06), rgba(22, 16, 13, 0.76)),
         url("https://z-cdn-media.chatglm.cn/files/49cbcf9b-bdc1-4b36-b131-459ca97ab5d4.png?auth_key=1882749853-7749145c3a6c42e7a915619007720a00-0-b25581ee56b1adde3cfe2cf664201238") center / cover no-repeat;
     }
 
@@ -237,7 +246,7 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 700;
       margin: 0 0 18px;
     }
 
@@ -252,8 +261,8 @@
 
     h1 {
       max-width: 820px;
-      font-size: clamp(64px, 11vw, 140px);
-      line-height: 0.84;
+      font-size: clamp(48px, 7.8vw, 96px);
+      line-height: 0.96;
     }
 
     .hero-copy {
@@ -261,6 +270,7 @@
       margin: 24px 0 0;
       color: rgba(255, 247, 232, 0.78);
       font-size: clamp(18px, 2vw, 23px);
+      font-weight: 300;
     }
 
     .hero-actions {
@@ -271,8 +281,9 @@
     }
 
     .hero-panel {
-      border: 1px solid rgba(255, 247, 232, 0.18);
-      background: rgba(16, 15, 14, 0.70);
+      border: 1px solid rgba(255, 247, 232, 0.16);
+      border-radius: var(--soft);
+      background: rgba(29, 22, 18, 0.64);
       backdrop-filter: blur(16px);
       padding: 18px;
       box-shadow: var(--shadow);
@@ -281,7 +292,7 @@
     .hero-panel strong {
       display: block;
       color: white;
-      font-size: 34px;
+      font-size: 30px;
       line-height: 1;
       margin-bottom: 8px;
       font-family: "DM Serif Display", serif;
@@ -298,7 +309,7 @@
       overflow: hidden;
       border-top: 1px solid rgba(255, 247, 232, 0.12);
       border-bottom: 1px solid rgba(255, 247, 232, 0.12);
-      background: var(--red);
+      background: #823136;
     }
 
     .ticker-track {
@@ -308,7 +319,7 @@
       padding: 12px 18px;
       color: white;
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       animation: ticker 28s linear infinite;
@@ -372,6 +383,7 @@
       background-size: cover;
       background-position: center;
       border: 1px solid rgba(16, 15, 14, 0.12);
+      border-radius: var(--soft);
     }
 
     .photo.tall {
@@ -394,17 +406,18 @@
       border: 1px solid rgba(16, 15, 14, 0.12);
       padding: 18px;
       background: white;
+      border-radius: 18px;
     }
 
     .point span {
       display: block;
       color: var(--red);
-      font-weight: 900;
+      font-weight: 700;
       margin-bottom: 6px;
     }
 
     .menu {
-      background: #17120f;
+      background: #1d1612;
     }
 
     .tabs {
@@ -421,7 +434,8 @@
       color: rgba(255, 247, 232, 0.72);
       padding: 0 13px;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 600;
+      border-radius: var(--button);
     }
 
     .tab.active,
@@ -443,9 +457,10 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 18px;
-      border: 1px solid rgba(255, 247, 232, 0.13);
-      background: #211b16;
-      border-radius: 8px;
+      border: 1px solid rgba(255, 247, 232, 0.12);
+      background: linear-gradient(145deg, rgba(255, 248, 234, 0.065), rgba(255, 248, 234, 0.025));
+      border-radius: 18px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
     }
 
     .menu-item:hover {
@@ -462,7 +477,7 @@
     .menu-item h3 {
       font-family: Inter, system-ui, sans-serif;
       font-size: 17px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.15;
       margin-bottom: 8px;
     }
@@ -489,7 +504,8 @@
       color: #1d140b;
       background: var(--gold);
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 700;
+      border-radius: var(--button);
       text-transform: uppercase;
     }
 
@@ -506,7 +522,8 @@
       border: 0;
       background: rgba(255, 247, 232, 0.10);
       color: white;
-      font-weight: 900;
+      font-weight: 700;
+      border-radius: var(--button);
     }
 
     .add-btn {
@@ -535,11 +552,11 @@
       min-width: 26px;
       text-align: center;
       color: var(--gold);
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .vibes {
-      background: #0f1412;
+      background: #121915;
     }
 
     .gallery {
@@ -555,7 +572,7 @@
       border: 1px solid rgba(255, 247, 232, 0.12);
       background-size: cover;
       background-position: center;
-      border-radius: 8px;
+      border-radius: var(--soft);
     }
 
     .gallery-item:first-child {
@@ -570,8 +587,9 @@
       padding: 8px 10px;
       background: rgba(16, 15, 14, 0.76);
       color: white;
-      font-weight: 900;
+      font-weight: 600;
       font-size: 13px;
+      border-radius: var(--button);
     }
 
     .booking {
@@ -595,7 +613,7 @@
     .order-summary {
       border: 1px solid rgba(16, 15, 14, 0.12);
       background: white;
-      border-radius: 8px;
+      border-radius: var(--soft);
     }
 
     form {
@@ -616,7 +634,7 @@
       display: block;
       margin-bottom: 7px;
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 700;
       color: rgba(16, 15, 14, 0.62);
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -631,7 +649,7 @@
       color: var(--ink);
       background: #fffaf0;
       padding: 11px 12px;
-      border-radius: 6px;
+      border-radius: 14px;
     }
 
     textarea {
@@ -653,7 +671,8 @@
       border: 0;
       background: var(--green);
       color: white;
-      font-weight: 900;
+      font-weight: 700;
+      border-radius: var(--button);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -686,7 +705,7 @@
       padding: 14px 0;
       border-top: 1px solid rgba(16, 15, 14, 0.10);
       color: rgba(16, 15, 14, 0.74);
-      font-weight: 800;
+      font-weight: 600;
     }
 
     .contact-link:hover {
@@ -720,7 +739,7 @@
       border-top: 1px solid rgba(16, 15, 14, 0.12);
       color: var(--ink);
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .site-footer {
@@ -810,7 +829,7 @@
       align-items: center;
       margin: 20px 0 12px;
       font-size: 22px;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .mobile-menu {
@@ -912,7 +931,7 @@
       }
 
       h1 {
-        font-size: clamp(58px, 20vw, 92px);
+      font-size: clamp(44px, 13vw, 66px);
       }
 
       section {
